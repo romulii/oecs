@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Participant Attendance Confirmation</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f4f7f6;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 20px;
+      margin: 0;
+    }
+
+    .form-container {
+      background-color: #fff;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 700px;
+      box-sizing: border-box;
+    }
+
+    .form-header {
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .form-header h2 {
+      color: #333;
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .form-header p {
+      color: #666;
+      font-size: 1rem;
+      margin: 0;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      color: #555;
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      color: #333;
+      transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: #007bff;
+      box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+      outline: none;
+    }
+
+    .submit-button {
+      display: block;
+      width: 100%;
+      padding: 12px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 1.1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 0.2s ease-in-out;
+    }
+
+    .submit-button:hover {
+      background-color: #0056b3;
+    }
+
+    .submit-button:active {
+      background-color: #004085;
+    }
+
+    @media (max-width: 600px) {
+      .form-container {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <div class="form-header">
+      <h2>Participant Attendance Confirmation</h2>
+      <p>Please confirm your attendance and complete your personal details.</p>
+    </div>
+    <form id="confirmationForm">
+      <div class="form-group">
+        <label for="fullName">Full Name *</label>
+        <input type="text" id="fullName" name="fullName" required />
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email Address *</label>
+        <input type="email" id="email" name="email" required />
+      </div>
+
+      <div class="form-group">
+        <label for="organization">Organization *</label>
+        <input type="text" id="organization" name="organization" required />
+      </div>
+
+      <div class="form-group">
+        <label for="position">Position/Title *</label>
+        <input type="text" id="position" name="position" required />
+      </div>
+
+      <div class="form-group">
+        <label for="country">Country Represented *</label>
+        <input type="text" id="country" name="country" required />
+      </div>
+
+      <div class="form-group">
+        <label for="dietary">Dietary Restrictions</label>
+        <textarea id="dietary" name="dietary" rows="3" placeholder="Please specify any dietary needs"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="specialNeeds">Accessibility / Special Requirements</label>
+        <textarea id="specialNeeds" name="specialNeeds" rows="3" placeholder="Please specify if applicable"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="attendanceConfirm">Will you attend this event? *</label>
+        <select id="attendanceConfirm" name="attendanceConfirm" required>
+          <option hidden value="">Select an option</option>
+          <option value="yes">Yes, I will attend</option>
+          <option value="no">No, I will not attend</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="comments">Additional Comments</label>
+        <textarea id="comments" name="comments" rows="3" placeholder="Any additional notes you'd like to share"></textarea>
+      </div>
+
+      <button type="submit" class="submit-button">Confirm Attendance</button>
+    </form>
+  </div>
+</body>
+</html>

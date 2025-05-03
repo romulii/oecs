@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OECS Outcomes – Demo Modules (1‒12)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ========================
+       THEME TOKENS
+       (Auto‑switches with system light/dark)
+    ======================== */
+    :root {
+      --bg: #0f172a; --card: #1e293b; --surface: #334155; --text: #f8fafc;
+      --accent: #38bdf8; --success: #10b981; --warn: #fbbf24; --error: #ef4444; --muted: #94a3b8;
+    }
+    @media (prefers-color-scheme: light) {
+      :root { --bg:#f8fafc; --card:#ffffff; --surface:#f1f5f9; --text:#0f172a; }
+    }
+
+    /* ========================
+       RESET & BASE
+    ======================== */
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family:"Inter",sans-serif;background:var(--bg);color:var(--text);
+      display:flex;flex-direction:column;align-items:center;gap:2rem;min-height:100vh;padding:1rem;
+    }
+    a{color:var(--accent);text-decoration:none}
+    h2{font-size:1.35rem;font-weight:600;margin-bottom:.25rem}
+    .muted{color:var(--muted);font-size:.875rem}
+
+    /* ========================
+       CARD / MODULE
+    ======================== */
+    .module{
+      background:var(--card);border-radius:1rem;box-shadow:0 6px 18px rgba(0,0,0,.45);
+      padding:1.6rem;max-width:720px;width:100%;display:flex;flex-direction:column;gap:1.2rem;
+    }
+
+    /* grids collapse gracefully to 1 column ≤ 420px */
+    .meta-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem}
+
+    .field label{display:block;font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:.35rem}
+    .value{background:var(--surface);border-radius:.5rem;padding:.6rem 1rem;font-size:.95rem;line-height:1.4}
+
+    /* Badges */
+    .badge{padding:.35rem .8rem;border-radius:999px;font-size:.75rem;font-weight:600;display:inline-block}
+    .done{background:var(--success);} .pending{background:var(--warn);color:#000;} .late{background:var(--error)}
+    .status-prospect{background:var(--muted);} .status-negotiation{background:var(--warn);color:#000;} .status-signed{background:var(--success);} .status-active{background:var(--accent);}
+    .level-none{background:var(--muted);} .level-ack{background:var(--accent);} .level-adopted{background:var(--success);} .level-action{background:var(--warn);color:#000;}
+
+    /* Progress bar */
+    .progress-wrapper{background:var(--surface);border-radius:.5rem;overflow:hidden;height:.8rem}
+    .progress-bar{height:100%;background:var(--accent);width:var(--progress,0%);transition:width .3s ease}
+
+    /* List block */
+    .list-block{background:var(--surface);border-radius:.5rem;padding:1rem 1.25rem;font-size:.93rem;line-height:1.45}
+    .list-block h3{font-size:1rem;font-weight:600;margin-bottom:.4rem}
+    .list-block ul{list-style:disc inside;margin-left:.5rem}
+
+    /* Footer / Buttons */
+    footer{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.6rem}
+    time{font-size:.8rem;color:var(--muted)}
+    .btn{background:var(--accent);color:#000;border:none;padding:.65rem 1.25rem;border-radius:.5rem;font-weight:600;cursor:pointer;transition:transform .15s ease;display:inline-flex;align-items:center;gap:.45rem}
+    .btn:hover{transform:translateY(-2px)}
+
+    /* Print */
+    @media print{body{background:#fff}.module{box-shadow:none;border:1px solid #e2e8f0}}
+    /* Extra small tweaks */
+    @media(max-width:420px){body{gap:1.2rem}.module{padding:1.25rem}}
+  </style>
+</head>
+<body>
+
+  <!-- ===== Module 1 – Policy Influence ===== -->
+  <article class="module" aria-labelledby="o1-title">
+    <header>
+      <h2 id="o1-title">Outcome 1 · Policy Influence</h2>
+      <p class="muted">Evidence of OECS wording adopted in policy docs</p>
+    </header>
+    <div class="meta-grid">
+      <div class="field"><label>Event</label><p class="value">Caribbean Climate Forum 2025</p></div>
+      <div class="field"><label>Influence Level</label><span class="badge level-adopted" aria-label="Influence: Adopted">Adopted</span></div>
+    </div>
+    <div class="field"><label>Intended Policy Ask</label><p class="value">Dedicated concessional climate‑finance window for SIDS.</p></div>
+    <div class="field"><label>Auto‑match Confidence</label>
+      <div class="progress-wrapper" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="73" aria-valuetext="73%">
+        <div class="progress-bar" style="--progress:73%"></div>
+      </div>
+    </div>
+    <section class="list-block" id="o1-list" hidden>
+      <h3>Evidence Excerpt</h3>
+      <blockquote style="border-left:4px solid var(--accent);margin:0;">“… establish <strong>dedicated concessional climate‑finance windows</strong> for SIDS, including the OECS …”</blockquote>
+      <h3 style="margin-top:1rem;">Source Document</h3>
+      <p><a href="#" download>Final Communiqué – Climate Forum 2025.pdf</a></p>
+    </section>
+    <footer>
+      <time datetime="2025-04-28">Updated 28 Apr 2025</time>
+      <button class="btn" data-toggle="o1-list" data-label-hide="Hide Evidence">View Evidence</button>
+    </footer>
+  </article>
+
+  <!-- ===== Module 2 – Partnership Tracker ===== -->
+  <article class="module" aria-labelledby="o2-title">
+    <header>
+      <h2 id="o2-title">Outcome 2 · Strategic Partnership</h2>
+      <p class="muted">Progress of MoU with Green Climate Fund</p>
+    </header>
+    <section class="meta-grid">
+      <div class="field"><label>Partner</label><p class="value">Green Climate Fund</p></div>
+      <div class="field"><label>Status</label><span class="badge status-negotiation">Negotiation</span></div>
+      <div class="field"><label>Commitment Value</label><p class="value">US$ 12 M (grant)</p></div>
+    </section>
+    <div class="field"><label>Objective</label><p class="value">Co‑develop a concessional finance window dedicated to OECS adaptation projects.</p></div>
+    <div class="field"><label>Latest Draft</label><p class="value"><a href="#" download>MoU_Draft_v3.pdf</a></p></div>
+    <section class="list-block" id="o2-list" hidden>
+      <h3>Milestones</h3>
+      <ul>
+        <li>Legal review complete – <strong>30 May 2025</strong> <span class="badge pending">Pending</span></li>
+        <li>Board approval session – 15 Jun 2025 <span class="badge pending">Pending</span></li>
+        <li>Launch adaptation window – Q4 2025 <span class="badge pending">Pending</span></li>
+      </ul>
+    </section>
+    <footer>
+      <time datetime="2025-04-28">Updated 28 Apr 2025</time>
+      <button class="btn" data-toggle="o2-list">View Milestones</button>
+    </footer>
+  </article>
+
+  <!-- ===== Modules 3–12 (same pattern, concise content) ===== -->
+  <!-- The following modules replicate earlier cards but are kept brief for demo. -->
+
+  <!-- Outcome 3 – Follow‑up Actions -->
+  <article class="module" aria-labelledby="o3-title">
+    <header><h2 id="o3-title">Outcome 3 · Follow‑up Actions</h2><p class="muted">Timely completion rate</p></header>
+    <div class="field"><label>Completion Rate</label>
+      <div class="progress-wrapper" role="progressbar" aria-valuenow="66" aria-valuemin="0" aria-valuemax="100" aria-valuetext="66%">
+        <div class="progress-bar" style="--progress:66%"></div>
+      </div>
+    </div>
+    <section class="list-block" id="o3-list" hidden>
+      <h3>Outstanding</h3>
+      <ul><li>Policy brief – 30 Apr <span class="badge pending">Pending</span></li><li>MoU with FAO – 15 May <span class="badge pending">Pending</span></li></ul>
+    </section>
+    <footer><time datetime="2025-04-28">Updated 28 Apr 2025</time><button class="btn" data-toggle="o3-list">View List</button></footer>
+  </article>
+
+  <!-- Outcome 4 – Contribution Outputs -->
+  <article class="module" aria-labelledby="o4-title">
+    <header><h2 id="o4-title">Outcome 4 · Contribution Outputs</h2><p class="muted">Speeches / papers delivered</p></header>
+    <div class="field"><label>Total Outputs</label><p class="value">3</p></div>
+    <section class="list-block" id="o4-list" hidden>
+      <ul>
+        <li>Keynote speech <a href="#" download>Download</a></li>
+        <li>Panel notes <a href="#" download>Download</a></li>
+        <li>Position paper <a href="#" download>Download</a></li>
+      </ul>
+    </section>
+    <footer><time datetime="2025-04-28">Updated 28 Apr 2025</time><button class="btn" data-toggle="o4-list">View Outputs</button></footer>
+  </article>
+
+  <!-- Outcome 5 – Breadth of Representation -->
+  <article class="module" aria-labelledby="o5-title">
+    <header><h2 id="o5-title">Outcome 5 · Representation Breadth</h2><p class="muted">Regions & themes covered</p></header>
+    <div class="meta-grid">
+      <div class="field"><label>Regions</label><p class="value">4 / 6</p></div>
+      <div class="field"><label>Themes</label><p class="value">Climate, Digital, Health, Trade</p></div>
+    </div>
+    <section class="list-block" id="o5-list" hidden>
+      <h3>Regional Breakdown</h3><ul><li>LAC – 12 events</li><li>Europe – 4</li><li>Africa – 2</li></ul>
+    </section>
+    <footer><time datetime="2025-04-28">Updated 28 Apr 2025</time><button class="btn" data-toggle="o5-list">View Details</button></footer>
+  </article>
+
+  <!-- Outcome 6 – Participation KPI -->
+  <article class="module" aria-labelledby="o6-title">
+    <header><h2 id="o6-title">Outcome 6 · Participation KPI</h2><p class="muted">Events attended YTD</p></header>
+    <div class="field"><label>Total Events</label><p class="value">27 <span class="badge done" style="margin-left:.4rem;">+18%</span></p></div>
+    <footer><time datetime="2025-04-28">Updated 28 Apr 2025</time><a class="btn" href="#">Open KPI Dashboard</a></footer>
+  </article>
+
+  <!-- Outcome 7 – Reporting Efficiency -->
+  <article class="module" aria-labelledby="o7-title">
+    <header><h2 id="o7-title">Outcome 7 · Reporting Efficiency</h2><p class="muted">Avg days to upload</p></header>
+    <div class="field"><label>Average Turnaround</label><p class="value">7.2 days</p></div>
+    <footer><time datetime="2025-04-28">Updated 28 Apr 2025</time><a class="btn" href="#">Download Report</a></footer>
+  </article>
+
+  <!-- Outcome 8 – Knowledge Assets -->
+  <article class="module" aria-labelledby="o8-title">
+    <header><h2 id="o8-title">Outcome 8 · Knowledge Assets</h2><p class="muted">Docs stored & reused</p></header>
+    <div class="meta-grid"><div class="field"><label>Stored</label><p class="value">142</p></div><div class="field"><label>Re‑used</label><p class="value">28</p></div></div>
+    <section class="list-block" id="o8-list" hidden>
+      <h3>Top Downloads</h3><ul><li>Climate Deck – 12</li><li>Digital Brief – 8</li></ul>
+    </section>
+    <footer><time datetime="2025-04-28">Updated 28 Apr 2025</time><button class="btn" data-toggle="o8-list">View Top Assets</button></footer>
+  </article>
+
+  <!-- Outcome 9 – Visibility Metrics -->
+  <article class="module" aria-labelledby="o9-title">
+    <header><h2 id="o9-title">Outcome 9 · Visibility</h2><p class="muted">Media & social reach</p></header>
+    <div class="meta-grid"><div class="field"><label>Mentions</label><p class="value">56</p></div><div class="field"><label>Impressions</label><p class="value">128k</p></div></div>
+    <footer><time datetime="2025-04-28">Updated 28 Apr 2025</time><a class="btn" href="#">Open Media Dashboard</a></footer>
+  </article>
+
+  <!-- Outcome 10 – Capacity Development -->
+  <article class="module" aria-labelledby="o10-title">
+    <header><h2 id="o10-title">Outcome 10 · Capacity Development</h2><p class="muted">Training hours & staff</p></header>
+    <div class="meta-grid"><div class="field"><label>Hours</label><p class="value">320</p></div><div class="field"><label>Staff</label><p class="value">24</p></div></div>
+    <section class="list-block" id="o10-list" hidden>
+      <h3>Recent Trainings</h3><ul><li>Negotiation Workshop – 8 h</li><li>Climate Finance Cert – 16 h</li></ul>
+    </section>
+    <footer><time datetime="2025-04-28">Updated 28 Apr 2025</time><button class="btn" data-toggle="o10-list">View Trainings</button></footer>
+  </article>
+
+  <!-- Outcome 11 – Strategic Alignment -->
+  <article class="module" aria-labelledby="o11-title">
+    <header><h2 id="o11-title">Outcome 11 · Strategic Alignment</h2><p class="muted">Pillars addressed</p></header>
+    <div class="field"><label>Pillars</label><p class="value">Sustainable Dev, Econ Integration, Digital Transform</p></div>
+    <section class="list-block" id="o11-list" hidden>
+      <h3>Event‑Pillar Map</h3><ul><li>UN Ocean Conf → Sustainable Dev</li><li>OECD Summit → Digital Transform</li></ul>
+    </section>
+    <footer><time datetime="2025-04-28">Updated 28 Apr 2025</time><button class="btn" data-toggle="o11-list">View Map</button></footer>
+  </article>
+
+  <!-- Outcome 12 – ROI -->
+  <article class="module" aria-labelledby="o12-title">
+    <header><h2 id="o12-title">Outcome 12 · ROI</h2><p class="muted">Value vs cost</p></header>
+    <div class="meta-grid"><div class="field"><label>Cost</label><p class="value">US$ 580k</p></div><div class="field"><label>Value</label><p class="value">US$ 4.2 M</p></div><div class="field"><label>ROI</label><p class="value">7.2×</p></div></div>
+    <footer><time datetime="2025-04-28">Updated 28 Apr 2025</time><a class="btn" href="#">Download ROI Sheet</a></footer>
+  </article>
+
+  <!-- ========================= JS: Toggle blocks ========================= -->
+  <script>
+    document.querySelectorAll('[data-toggle]').forEach(btn=>{
+      const id=btn.getAttribute('data-toggle');
+      const tgt=document.getElementById(id);
+      btn.addEventListener('click',()=>{
+        const exp=btn.getAttribute('aria-expanded')==='true';
+        btn.setAttribute('aria-expanded',!exp);
+        tgt.hidden=exp;
+        const show=btn.dataset.labelShow||'View Details', hide=btn.dataset.labelHide||'Hide';
+        btn.textContent=exp?show:hide;
+      });
+    });
+  </script>
+</body>
+</html>

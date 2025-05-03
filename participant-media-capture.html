@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OECS — Participant Media & Outcome Capture</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ===== RESET & DESIGN TOKENS ===== */
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --clr-primary:#253561;
+      --clr-secondary:#75d4e1;
+      --clr-accent:#f5994b;
+      --clr-bg:#f4f7fa;
+      --radius-lg:1.2rem;
+      --radius-sm:.45rem;
+      --shadow-lg:0 10px 28px rgba(37,53,97,.18);
+      --input-border:#d0d7e2
+    }
+    html{scroll-behavior:smooth}
+    body{
+      font-family:'Inter',sans-serif;
+      background:var(--clr-bg);
+      color:var(--clr-primary);
+      line-height:1.6;
+      display:flex;
+      justify-content:center;
+      padding:2rem 1rem;
+      -webkit-font-smoothing:antialiased
+    }
+
+    /* ===== CONTAINER ===== */
+    .wrapper{
+      width:100%;
+      max-width:1120px;
+      background:#fff;
+      border-radius:var(--radius-lg);
+      box-shadow:var(--shadow-lg);
+      overflow:hidden
+    }
+    header{
+      background:linear-gradient(135deg,var(--clr-primary)0%,var(--clr-secondary)88%);
+      color:#fff;
+      padding:2rem 2rem 2.4rem
+    }
+    header h1{
+      font-size:1.95rem;
+      font-weight:600;
+      margin-bottom:.3rem
+    }
+    header p{
+      font-size:.96rem;
+      opacity:.9
+    }
+
+    /* ===== FORM LAYOUT ===== */
+    form{
+      display:grid;
+      gap:2rem;
+      padding:2.25rem 2.5rem 2.75rem
+    }
+    section{
+      border:1px solid var(--clr-bg);
+      border-radius:var(--radius-sm);
+      padding:1.6rem 1.6rem 1.9rem
+    }
+    section h2{
+      font-size:1.15rem;
+      font-weight:600;
+      margin-bottom:1rem
+    }
+
+    /* ===== GRID UTILITIES ===== */
+    .grid-2,.grid-3{display:grid;gap:1.15rem}
+    .grid-2{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+    .grid-3{grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+
+    label{
+      display:flex;
+      flex-direction:column;
+      gap:.35rem;
+      font-size:.84rem;
+      font-weight:500
+    }
+    input,select,textarea{
+      font-family:inherit;
+      font-size:.95rem;
+      padding:.62rem .75rem;
+      border:1px solid var(--input-border);
+      border-radius:var(--radius-sm);
+      transition:border-color .15s ease
+    }
+    input:focus,select:focus,textarea:focus{
+      outline:none;
+      border-color:var(--clr-secondary);
+      box-shadow:0 0 0 3px rgba(117,212,225,.35)
+    }
+    textarea{resize:vertical;min-height:130px}
+    input[type=file]{background:var(--clr-bg);font-size:.9rem;padding:.5rem}
+    input[type=range]{accent-color:var(--clr-secondary)}
+
+    /* ===== SUBMIT BUTTON ===== */
+    .actions{text-align:right}
+    button[type=submit]{
+      background:var(--clr-accent);
+      color:#fff;
+      font-weight:600;
+      border:none;
+      font-size:.95rem;
+      padding:.9rem 2.4rem;
+      border-radius:var(--radius-sm);
+      cursor:pointer;
+      transition:background .18s ease
+    }
+    button[type=submit]:hover{background:#ec8831}
+
+    .success-banner{
+      display:none;
+      margin:1.75rem 2rem 0;
+      background:#e9fdf7;
+      border:1px solid #badbcc;
+      color:#0f5132;
+      padding:1rem 1.25rem;
+      border-radius:var(--radius-sm);
+      font-weight:500;
+      font-size:.95rem
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media(max-width:640px){
+      header{padding:1.75rem 1.5rem 2rem}
+      header h1{font-size:1.6rem}
+      form{padding:1.75rem 1.5rem 2.2rem;gap:1.75rem}
+    }
+    @media(max-width:480px){
+      .grid-2,.grid-3{grid-template-columns:1fr}
+      section{padding:1.3rem 1rem 1.6rem}
+      header h1{font-size:1.45rem}
+      body{padding:1rem .6rem}
+    }
+    @media(max-width:400px){
+      .wrapper{box-shadow:none;border-radius:0}
+      header{padding:1.5rem 1rem 1.7rem}
+      form{padding:1.5rem 1rem 2rem}
+      button[type=submit]{width:100%}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <header>
+      <h1>Participant Media &amp; Outcome Submission</h1>
+      <p>Upload photos, video, and post-event reflections so we can archive contributions and share impact across the OECS.</p>
+    </header>
+
+    <form id="participantForm" novalidate>
+      <!-- PARTICIPANT DETAILS -->
+      <section>
+        <h2>Participant Details</h2>
+        <div class="grid-3">
+          <label>Full Name *<input required name="participantName" type="text" placeholder="Jane Doe"></label>
+          <label>Job Title *<input required name="jobTitle" type="text" placeholder="Senior Policy Analyst"></label>
+          <label>Division / Unit *<input required name="division" type="text" placeholder="Economic Affairs"></label>
+          <label>Email *<input required name="email" type="email" placeholder="jane.doe@oecs.int"></label>
+          <label>Phone <input name="phone" type="tel" placeholder="+1 758-555-1234"></label>
+          <label>Role in Event
+            <select name="role">
+              <option hidden value="">Select</option>
+              <option>Speaker</option>
+              <option>Panelist</option>
+              <option>Moderator</option>
+              <option>Delegate</option>
+              <option>Observer</option>
+            </select>
+          </label>
+        </div>
+      </section>
+
+      <!-- EVENT REFERENCE -->
+      <section>
+        <h2>Event Reference</h2>
+        <div class="grid-2">
+          <label>Event ID / Name *<input required name="eventName" type="text" placeholder="2025-CLIMATE-SUMMIT"></label>
+          <label>Event URL <input name="eventUrl" type="url" placeholder="https://example.com"></label>
+          <label>Start Date<input name="startDate" type="date"></label>
+          <label>End Date<input name="endDate" type="date"></label>
+          <label>Location<input name="location" type="text" placeholder="Nassau, Bahamas"></label>
+          <label>Focus Areas
+            <select multiple size="4" name="focusAreas">
+              <option>Climate Resilience</option>
+              <option>Digital Transformation</option>
+              <option>Health</option>
+              <option>Education</option>
+              <option>Trade &amp; Finance</option>
+            </select>
+          </label>
+        </div>
+      </section>
+
+      <!-- MEDIA UPLOAD -->
+      <section>
+        <h2>Media Upload</h2>
+        <p style="font-size:.8rem; margin-bottom:1rem; opacity:.75;">
+          You may drag &amp; drop multiple files. 500 MB max total.
+        </p>
+        <div class="grid-2">
+          <label>Photos (JPEG, PNG)<input name="photos" type="file" accept="image/*" multiple></label>
+          <label>Video Clips (MP4, MOV)<input name="videos" type="file" accept="video/*" multiple></label>
+          <label>Audio / Podcasts (MP3, WAV)<input name="audios" type="file" accept="audio/*" multiple></label>
+          <label>Presentation Decks (PDF, PPTX)<input name="decks" type="file" accept=".pdf,.ppt,.pptx"></label>
+        </div>
+        <label>Description / Captions<textarea name="mediaDesc" placeholder="Describe the media you are submitting…" rows="4"></textarea></label>
+      </section>
+
+      <!-- REFLECTIONS & OUTCOMES -->
+      <section>
+        <h2>Reflections &amp; Outcomes</h2>
+        <label>Key Outcomes Achieved<textarea name="keyOutcomes" placeholder="Summarise major takeaways…" rows="4"></textarea></label>
+        <label>Follow-up Actions<textarea name="followUp" placeholder="What follow-ups are necessary and by whom?" rows="3"></textarea></label>
+        <label>Partnerships Formed<textarea name="partnerships" placeholder="Any new partnerships or MoUs…" rows="3"></textarea></label>
+        <label>Policy Influence<textarea name="policyImpact" placeholder="Describe policy contributions…" rows="3"></textarea></label>
+        <label>Impact Rating (1–5)
+            <select name="impactScore" required>
+              <option hidden value="">Select rating</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+            </select>
+          </label>
+      </section>
+
+      <!-- CONSENT -->
+      <section>
+        <h2>Consent &amp; Attribution</h2>
+        <label style="flex-direction:row;align-items:center;gap:.5rem;font-size:.85rem;">
+          <input required type="checkbox" name="consentUse">
+          I grant OECS permission to use the submitted media for reporting/promotional purposes.
+        </label>
+        <label style="flex-direction:row;align-items:center;gap:.5rem;font-size:.85rem;">
+          <input required type="checkbox" name="consentConfid">
+          I confirm that no confidential or restricted content is included.
+        </label>
+        <label>Digital Signature *<input required name="signature" type="text" placeholder="Type your full name"></label>
+      </section>
+
+      <div class="actions">
+        <button type="submit">Submit to wbH</button>
+      </div>
+    </form>
+  </div>
+
+  <div id="successBanner" class="success-banner">
+    Thank you! Your submission has been received and routed for archiving.
+  </div>
+
+  <script defer>
+    const form = document.getElementById('participantForm');
+    const successBanner = document.getElementById('successBanner');
+
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      const WEBHOOK_URL = 'https://wbH.yourdomain.com/webhook/participant-intake'; // ← swap in your endpoint
+
+      const formData = new FormData(form);
+      formData.append('timestamp', new Date().toISOString());
+
+      try {
+        const res = await fetch(WEBHOOK_URL, { method: 'POST', body: formData });
+        if (!res.ok) throw new Error('Network response was not ok');
+        form.reset();
+        successBanner.style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } catch (err) {
+        alert('There was a problem submitting the form. Please try again later.');
+        console.error(err);
+      }
+    });
+  </script>
+</body>
+</html>
